@@ -1,5 +1,6 @@
 ### 🛠 기술 스택
 
+<!--
 #### 프론트엔드
 <div>
   <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white"/>
@@ -10,6 +11,7 @@
   <img src="https://img.shields.io/badge/Vue.js-4FC08D?style=flat-square&logo=vue.js&logoColor=white"/>
   <img src="https://img.shields.io/badge/Sass-CC6699?style=flat-square&logo=sass&logoColor=white"/>
 </div>
+-->
 
 #### 백엔드
 <div>
