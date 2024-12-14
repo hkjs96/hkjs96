@@ -1,3 +1,9 @@
+## 안녕하세요! 👋 소프트웨어 엔지니어 박지수 입니다
+
+### 🙋‍♂️ 저는 이런 사람입니다
+- 🔭 메가존클라우드에서 AWS 인프라 운영 및 관리를 담당하고 있습니다
+- 👯 안정적이고 효율적인 서비스를 제공하는 백엔드 개발에 관심이 있습니다
+
 ### 🛠 기술 스택
 
 <!--
@@ -19,13 +25,11 @@
   <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white"/>
   <img src="https://img.shields.io/badge/Java-007396?style=flat-square&logo=java&logoColor=white"/>
   <img src="https://img.shields.io/badge/Spring-6DB33F?style=flat-square&logo=spring&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Django-092E20?style=flat-square&logo=django&logoColor=white"/>
 </div>
 
 #### 데이터베이스
 <div>
   <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white"/>
-  <img src="https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white"/>
   <img src="https://img.shields.io/badge/PostgreSQL-336791?style=flat-square&logo=postgresql&logoColor=white"/>
 </div>
 
@@ -40,5 +44,15 @@
 #### 클라우드
 <div>
   <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazon-aws&logoColor=white"/>
-  <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black"/>
 </div>
+
+### 📊 GitHub 통계
+![GitHub stats](https://github-readme-stats.vercel.app/api?username=hkjs96&show_icons=true&theme=radical)
+
+### 🏆 주요 프로젝트
+- [프로젝트명](링크) - 간단한 설명
+- [프로젝트명](링크) - 간단한 설명
+
+### 📫 연락처
+[![Gmail Badge](https://img.shields.io/badge/-Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:jsmini3814@gmail.com)](mailto:jsmini3814@gmail.com)
+<!--[![Blog Badge](https://img.shields.io/badge/-Tech%20Blog-20c997?style=flat-square&logo=Velog&logoColor=white&link=블로그주소)](블로그주소)-->
