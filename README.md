@@ -46,12 +46,16 @@
   <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazon-aws&logoColor=white"/>
 </div>
 
+<!--
 ### 📊 GitHub 통계
 ![GitHub stats](https://github-readme-stats.vercel.app/api?username=hkjs96&show_icons=true&theme=radical)
+-->
 
 ### 🏆 주요 프로젝트
+<!--
 - [프로젝트명](링크) - 간단한 설명
-- [프로젝트명](링크) - 간단한 설명
+-->
+- [Private Multi-Account Grafana AMP Monitoring](https://github.com/hkjs96/private-multiaccount-monitoring) - 프라이빗 네트워크 및 멀티 어카운트 AWS 환경에서 Grafana, Amazon Managed Prometheus (AMP), CloudWatch 및 Grafana Agent를 활용한 모니터링 시스템 구축
 
 ### 📫 연락처
 [![Gmail Badge](https://img.shields.io/badge/-Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:jsmini3814@gmail.com)](mailto:jsmini3814@gmail.com)
