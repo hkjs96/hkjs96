@@ -54,6 +54,8 @@
   - Grafana Agent 기반 로그/메트릭 이중 전송 구조 설계
   - 운영 리소스 현황 파악 및 이상 탐지 시스템 구축
 
+### 🧪 개인 프로젝트
+
 #### 🔹 [SimpleShop – 세션 기반 쇼핑몰 API](https://github.com/hkjs96/simpleshop)
 > 세션 인증 + 다중 이미지 업로드를 포함한 쇼핑몰 API
 
