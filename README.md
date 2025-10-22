@@ -11,7 +11,7 @@
 
 - 대규모 트래픽을 고려한 **확장성 있는 백엔드 아키텍처**
 - **클라우드 기반 자동화 및 운영 효율화 (IaC, 모니터링 등)**
-- **Kafka, Redis, OAuth, 보안 인증 설계** 등 
+- 백엔드 개발
 
 ---
 
@@ -22,8 +22,10 @@
   <img src="https://img.shields.io/badge/Java-17-orange.svg"/>
   <img src="https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen.svg"/>
   <img src="https://img.shields.io/badge/Spring%20Security-6B7280?style=flat-square"/>
+  <!--
   <img src="https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white"/>
   <img src="https://img.shields.io/badge/Kafka-000000?style=flat-square&logo=apachekafka&logoColor=white"/>
+  -->
 </div>
 
 #### Infra & DevOps
@@ -77,19 +79,20 @@
 - `@Scheduled` 기반 뉴스 수집 + 중복 저장 방지 + 실패 방어
 - Naver 뉴스 API 연동, Swagger + 테스트 커버리지 적용
 
+<!--
 #### 🔹 [Mini E-Commerce Order System](https://github.com/hkjs96/ordersystem)
 > DDD + Hexagonal + Kafka 기반 주문 시스템
 
 - 주문/결제/배송 상태 전이 완전 구현
 - Kafka 기반 이벤트 설계 + Redis 재고 TTL 시스템 구현
 - 멱등성 보장, 분산 락, 스케줄러 기반 배송 전환 처리
-
+-->
 ---
 
 ### 📫 연락처
 
 [![Gmail Badge](https://img.shields.io/badge/-Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:jsmini3814@gmail.com)](mailto:jsmini3814@gmail.com)
-<!--[![Blog Badge](https://img.shields.io/badge/-Tech%20Blog-20c997?style=flat-square&logo=Velog&logoColor=white&link=블로그주소)](블로그주소)-->
+[![Blog Badge](https://img.shields.io/badge/-Tech%20Blog-20c997?style=flat-square&logo=Velog&logoColor=white&link=블로그주소)](블로그주소)
 ---
 
 🙌 방문해주셔서 감사합니다.  
