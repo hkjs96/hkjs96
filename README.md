@@ -15,7 +15,7 @@
 
 ---
 
-### 교육
+### 📕 교육
 <a href="https://hhpluscertificateofcompletion.oopy.io/">
   <img src="https://static.spartaclub.kr/hanghae99/plus/completion/badge_blue.svg" />
 </a>
