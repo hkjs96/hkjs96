@@ -7,6 +7,15 @@
 
 ---
 
+### 한눈에 보기
+- 🏢 **MegazoneCloud**: AWS 기반 인프라 운영/개선, **EKS 운영·업그레이드·모니터링 구축** 경험
+- 🎓 **항해플러스(Backend)** 수료: Java/Spring 기반 백엔드 기본기(트랜잭션/테스트/동시성/클린아키텍처/모니터링) 강화
+  - 항해플러스 이커머스 시스템: Redis(랭킹 Sorted Set / 선착순 쿠폰 INCR ) + DB 락 전략(비관/낙관) 적용, k6 부하테스트 및 (가상) 장애 대응 문서화(지표 p95/p99, error rate 기반 분석)
+
+- 🧩 관심사: **EKS 운영 표준화**, 모니터링/로그/트레이싱 기반 장애 대응, 확장 가능한 백엔드 설계
+
+---
+
 ### 💡 주요 관심사
 
 - 대규모 트래픽을 고려한 **확장성 있는 백엔드 아키텍처**
@@ -15,16 +24,76 @@
 
 ---
 
-### 📕 교육
+## 🧑‍💻 경력 (Updated)
+### MegazoneCloud (2023.10 ~ 현재)
+- AWS 인프라 운영 및 개선(고객사/프로덕션 중심)
+- **EKS 모니터링 구축/개선**: CloudWatch/Prometheus/Grafana 기반 지표 가시화 및 이상 징후 탐지 체계 정리
+- **EKS 클러스터 업그레이드 지원**: 사전 검증(DEV/STG) → 운영 반영(롤백/이슈 수집/문서화) 흐름 정리 → 내부 베이스 프로세스 수립
+- 운영 장애/이슈 대응: 로그·지표 기반 원인 파악 및 재발 방지 관점의 조치/기록
+
+---
+
+## 🎓 교육 (항해플러스)
 <a href="https://hhpluscertificateofcompletion.oopy.io/">
   <img src="https://static.spartaclub.kr/hanghae99/plus/completion/badge_blue.svg" />
 </a>
 
+- Java/Spring 기반 백엔드 커리큘럼 수행
+- 결과물은 아래 공개 레포로 정리했습니다(과제/문서/테스트/부하테스트)
+
 ---
 
-### 🛠 기술 스택
+## 🧪 항해플러스 과제/프로젝트 (Public)
 
-#### Back-End
+<details>
+<summary><b>🔹 hhplus-ecommerce</b> — 항해플러스 이커머스 백엔드 (Week 2~10: 핵심 도메인 구현 → 동시성/Redis 적용 → 성능 테스트 & 장애 대응)</summary>
+
+> 항해플러스 백엔드 커리큘럼 기반으로 단계별(Week 3/4/7/9/10) 구현·학습·문서화를 누적한 이커머스 시스템
+
+- **아키텍처**: Layered Architecture(Presentation → Application → Domain → Infrastructure) + Redis / MySQL
+- **핵심 기능**
+  - 상품 조회/재고 관리(Stock 분리, 이력 추적)
+  - 장바구니 CRUD, 주문 생성/결제(포인트)
+  - **인기 상품 랭킹**: Redis Sorted Set 기반 Top N / 특정 상품 순위 조회
+  - **선착순 쿠폰 발급**: Redis(Set/String) + (권장) Lua 스크립트로 원자적 처리
+- **동시성/정합성 전략**
+  - 포인트 차감: **Pessimistic Lock(SELECT … FOR UPDATE)**
+  - 재고 차감: **Optimistic Lock(@Version)**
+  - 랭킹/쿠폰: **Redis 원자 연산(ZINCRBY/DECR/SADD) + TTL**
+- **가용성/장애 내성**
+  - 주문 완료 후 **외부 데이터 플랫폼 전송을 @Async로 분리**
+  - Timeout(3s) + Retry(최대 3회) + **Outbox Fallback(재시도 큐)**
+- **테스트/검증**
+  - Testcontainers 기반 통합 테스트(MySQL 8.0, Redis 7.x)
+  - ExecutorService + CountDownLatch로 동시성 검증
+  - Jacoco 라인 커버리지 관리(레포 기준 94% 표기)
+- **성능/장애 대응 산출물(레포에 포함)**
+  - `docs/week10/step19-load-test-plan.md`: 부하 테스트 시나리오/목표치/계획
+  - `docs/week10/step20-incident-report.md`: p95/p99, error rate, 리소스 지표 기반 분석 + (가상) 장애 대응 문서
+- **산출물/구조**
+  - `docs/`: 요구사항, API 명세(엔드포인트), ERD/시퀀스 다이어그램, Week별 학습/피드백 기록
+  - `loadtest/k6/`: k6 스크립트 및 실행 산출물
+  - `observability/monitoring/`: 모니터링 관련 구성/산출물 정리
+
+</details>
+
+<details>
+<summary><b>🔹 hhplus-week-1-tdd</b> — 포인트 시스템 TDD & 동시성 제어(채택: 사용자별 ReentrantLock)</summary>
+
+> 포인트 충전/사용에서 발생하는 Race Condition을 해결하고, Java/Spring에서의 동시성 제어 옵션을 비교 분석한 보고서형 레포
+
+- **채택 방식**: 사용자 ID별 Lock을 `ConcurrentHashMap<Long, Lock>`로 관리하고 `ReentrantLock`으로 임계영역 보호
+- **비교 분석 포함**: synchronized, Atomic, DB Pessimistic Lock 등 대안 비교 및 선택 근거 정리
+- **검증(레포 기재)**: 동시 사용자 10명 × 10회 충전 시나리오에서 기대 결과 100% 일치, Race condition 0건(테스트 기준)  
+
+</details>
+
+---
+
+
+## 🛠 기술 스택
+
+### Back-End
 <div>
   <img src="https://img.shields.io/badge/Java-17-orange.svg"/>
   <img src="https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen.svg"/>
@@ -35,7 +104,7 @@
   -->
 </div>
 
-#### Infra & DevOps
+### Infra & DevOps
 <div>
   <img src="https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonaws&logoColor=white"/>
   <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white"/>
@@ -44,7 +113,7 @@
   <img src="https://img.shields.io/badge/CloudWatch-FF9900?style=flat-square&logo=amazonaws&logoColor=white"/>
 </div>
 
-#### Front-End (기본 활용)
+### Front-End (기본 활용)
 <div>
   <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black"/>
   <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white"/>
@@ -52,9 +121,9 @@
 
 ---
 
-### 🧪 주요 프로젝트
+## 🧪 Public Repos (GitHub)
 
-#### 🔹 [Private Multi-Account Grafana AMP Monitoring](https://github.com/hkjs96/private-multiaccount-monitoring)
+### 🔹 [Private Multi-Account Grafana AMP Monitoring](https://github.com/hkjs96/private-multiaccount-monitoring)
 > 사설 VPC + 멀티 AWS 계정 환경에서 통합 모니터링 구축
 
 - **기술 스택**: AWS CloudWatch, Amazon Managed Prometheus, Grafana, IAM, VPC Peering
@@ -63,31 +132,26 @@
   - Grafana Agent 기반 로그/메트릭 이중 전송 구조 설계
   - 운영 리소스 현황 파악 및 이상 탐지 시스템 구축
 
-### 🧪 개인 프로젝트
+---
 
-#### 🔹 [SimpleShop – 세션 기반 쇼핑몰 API](https://github.com/hkjs96/simpleshop)
-> 세션 인증 + 다중 이미지 업로드를 포함한 쇼핑몰 API
-
+## 🧪 개인 프로젝트 (Backend)
+### 🔹 [SimpleShop – 세션 기반 쇼핑몰 API](https://github.com/hkjs96/simpleshop)
 - Spring Session 기반 로그인 + 인증 필터 수동 구현
 - AWS S3 연동 이미지 업로드 + 순서 보장 + 삭제 기능
 - Swagger 문서화에 Cookie 기반 인증 연동
 
-#### 🔹 [JWT 인증 & Google OAuth2 예제](https://github.com/hkjs96/jwt)
-> Spring Security + Redis 기반 JWT 인증 + Google OAuth2 통합
-
-- JWT + RefreshToken Redis 저장 구조 구성
-- Google OAuth2 인가코드 흐름 완전 통합
+### 🔹 [JWT 인증 & Google OAuth2 예제](https://github.com/hkjs96/jwt)
+- JWT + RefreshToken 저장 구조 구성
+- Google OAuth2 인가코드 흐름 통합
 - React + Vite 프론트와 연동하여 인증 플로우 구현
 
-#### 🔹 [NewsTracker – 키워드 기반 뉴스 수집 시스템](https://github.com/hkjs96/newstracker)
-> Google OAuth 로그인 + JWT 발급, 키워드 기반 주기적 뉴스 수집 서비스
-
+### 🔹 [NewsTracker – 키워드 기반 뉴스 수집 시스템](https://github.com/hkjs96/newstracker)
 - OAuth2 → JWT 발급 후 인증 처리 구현
 - `@Scheduled` 기반 뉴스 수집 + 중복 저장 방지 + 실패 방어
-- Naver 뉴스 API 연동, Swagger + 테스트 커버리지 적용
+- Naver 뉴스 API 연동, Swagger + 테스트 적용
 
 <!--
-#### 🔹 [Mini E-Commerce Order System](https://github.com/hkjs96/ordersystem)
+### 🔹 [Mini E-Commerce Order System](https://github.com/hkjs96/ordersystem)
 > DDD + Hexagonal + Kafka 기반 주문 시스템
 
 - 주문/결제/배송 상태 전이 완전 구현
@@ -96,7 +160,7 @@
 -->
 ---
 
-### 📫 연락처
+## 📫 연락처
 
 [![Gmail Badge](https://img.shields.io/badge/-Gmail-d14836?style=flat-square&logo=Gmail&logoColor=white&link=mailto:jsmini3814@gmail.com)](mailto:jsmini3814@gmail.com)
 [![Blog Badge](https://img.shields.io/badge/-Tech%20Blog-20c997?style=flat-square&logo=Velog&logoColor=white&link=블로그주소)](블로그주소)
