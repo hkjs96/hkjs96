@@ -45,10 +45,9 @@
 
 ## 🧪 항해플러스 과제/프로젝트 (Public)
 
-<details>
-<summary><b>🔹 hhplus-ecommerce</b> — 항해플러스 이커머스 백엔드 (Week 2~10: 핵심 도메인 구현 → 동시성/Redis 적용 → 성능 테스트 & 장애 대응)</summary>
 
-> 항해플러스 백엔드 커리큘럼 기반으로 단계별(Week 3/4/7/9/10) 구현·학습·문서화를 누적한 이커머스 시스템
+### 🔹 [hhplus-ecommerce](https://github.com/hkjs96/hhplus-ecommerce)
+> 항해플러스 이커머스 백엔드 (Week 2~10: 핵심 도메인 구현 → 동시성/Redis 적용 → 성능 테스트 & (가상) 장애 대응)
 
 - **아키텍처**: Layered Architecture(Presentation → Application → Domain → Infrastructure) + Redis / MySQL
 - **핵심 기능**
@@ -75,18 +74,12 @@
   - `loadtest/k6/`: k6 스크립트 및 실행 산출물
   - `observability/monitoring/`: 모니터링 관련 구성/산출물 정리
 
-</details>
 
-<details>
-<summary><b>🔹 hhplus-week-1-tdd</b> — 포인트 시스템 TDD & 동시성 제어(채택: 사용자별 ReentrantLock)</summary>
+### 🔹 [hhplus-week-1-tdd](https://github.com/hkjs96/hhplus-week-1-tdd)
+> 포인트 시스템 TDD & 동시성 제어 실습 레포
 
-> 포인트 충전/사용에서 발생하는 Race Condition을 해결하고, Java/Spring에서의 동시성 제어 옵션을 비교 분석한 보고서형 레포
-
-- **채택 방식**: 사용자 ID별 Lock을 `ConcurrentHashMap<Long, Lock>`로 관리하고 `ReentrantLock`으로 임계영역 보호
-- **비교 분석 포함**: synchronized, Atomic, DB Pessimistic Lock 등 대안 비교 및 선택 근거 정리
-- **검증(레포 기재)**: 동시 사용자 10명 × 10회 충전 시나리오에서 기대 결과 100% 일치, Race condition 0건(테스트 기준)  
-
-</details>
+- 포인트 충전/사용 도메인을 **TDD로 구현**하고 테스트로 요구사항을 고정
+- 동시 요청에서 발생하는 Race Condition을 재현하고, **사용자 단위로 충돌을 막는 방식**으로 해결
 
 ---
 
