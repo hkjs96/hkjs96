@@ -103,7 +103,7 @@
 - **VPC Peering & Grafana Agent**를 활용한 계정 간 메트릭/로그 중앙 집중화 설계
 - 보안 컴플라이언스를 준수하며 다수 계정의 리소스 현황을 단일 대시보드에서 시각화
 
-### 🔹 [SimpleShop – 세션 기반 쇼핑몰 API](https://github.com/hkjs96/simpleshop)
+### 🔹 [SimpleShop – 세션 기반 쇼핑몰](https://github.com/hkjs96/simpleshop)
 - Spring Session 기반 로그인 및 AWS S3 이미지 업로드 기능 구현
 - Swagger 문서화 및 Cookie 기반 인증 연동 실습
 
