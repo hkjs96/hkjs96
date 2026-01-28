@@ -54,32 +54,58 @@
 
 ---
 
-## 🧪 Featured Projects
+## 🎓 Education & Training
 
-### 🔹 [이커머스 서버 아키텍처 고도화 (항해플러스)](https://github.com/hkjs96/hhplus-ecommerce)
-> **대규모 트래픽(1,000 TPS) 환경에서의 동시성 제어 및 아키텍처 진화 프로젝트**
-> <br> *Stack: Java 17, Spring Boot 3.x, Redis, MySQL, Docker, Testcontainers*
+### **항해플러스 Backend 10기 (2025.10 ~ 2025.12)**
+**이커머스 서버 아키텍처 고도화 프로젝트 (Capstone Project)**
+> **대규모 트래픽(1,000 TPS) 환경을 가정한 동시성 제어 및 아키텍처 진화 실습** <br>
+> *Stack: Java 17, Spring Boot 3.x, Redis, MySQL, Docker, Testcontainers, k6*
 
-**1. 동시성 제어 및 데이터 정합성 100% 보장**
-- **(Challenge)** 선착순 쿠폰 발급 시 Race Condition으로 인한 재고 초과 발행(Overselling) 문제
-- **(Solution)** **Redis Distributed Lock (Redisson)** 도입 및 대기열 로직 구현으로 1,000 TPS 부하 상황에서도 정합성 확보
-- **(Detail)** 상황별 락 전략 최적화: 포인트(비관적 락), 재고(낙관적 락), 선착순(분산락)
+- **⚡ Redis 분산락(Redisson) 도입으로 데이터 정합성 100% 보장**
+  - 선착순 이벤트 시 1,000 TPS 트래픽으로 인해 발생하는 **재고 초과 발행(Overselling) 및 Race Condition**을 해결하기 위해 **Redisson 기반의 분산락**과 대기열 로직을 구현했습니다.
+  - 비즈니스 특성에 따라 락 전략을 세분화(포인트: 비관적 락, 재고: 낙관적 락, 선착순: 분산락)하여 성능과 데이터 무결성의 균형을 확보했습니다.
 
-**2. 아키텍처 리팩토링 (Layered → Event-Driven)**
-- **(Challenge)** 서비스 계층 비대화 및 강한 결합도(Coupling)로 인한 유지보수 저하
-- **(Solution)** **UseCase 패턴**으로 애플리케이션 책임을 분리하고, **TransactionalEventListener**를 통해 트랜잭션과 후속 로직(알림 등)을 비동기 분리
+- **🏗️ Layered Architecture를 Event-Driven 구조로 리팩토링**
+  - 서비스 비대화로 인한 도메인 간 **강한 결합(Coupling)** 문제를 해결하고자 **UseCase 패턴**을 도입하여 계층별 책임을 명확히 분리했습니다.
+  - **TransactionalEventListener**를 활용해 주요 트랜잭션과 후속 로직(알림 등)을 비동기로 처리하여 시스템의 확장성을 개선했습니다.
 
-**3. Testcontainers 기반의 신뢰성 있는 테스트 환경**
-- **(Challenge)** H2(인메모리)와 운영 DB(MySQL) 간의 동작 차이로 인한 거짓 양성(False Positive) 문제
-- **(Solution)** Docker 기반의 격리된 통합 테스트 환경을 구축하여 락(Lock) 동작 및 동시성 시나리오 완벽 검증
+- **🚀 Redis Sorted Set 기반 실시간 랭킹 최적화**
+  - RDB로 집계 시 발생하는 조회 성능 저하 문제를 해결하기 위해, 인메모리 자료구조의 **원자적 연산(ZINCRBY)**을 활용했습니다.
+  - 이를 통해 동시성 이슈 없이 실시간 집계를 수행하며 조회 복잡도를 **O(log N)** 수준으로 최적화했습니다.
+
+- **🛡️ Testcontainers 기반의 신뢰성 있는 통합 테스트 환경 구축**
+  - 인메모리 DB(H2)와 운영 DB(MySQL) 간의 락(Lock) 동작 및 문법 차이로 발생하는 **테스트 신뢰성 저하(False Positive) 문제**를 해결했습니다.
+  - Docker 기반의 **Testcontainers**를 도입하여, 로컬에서도 실제 운영 환경과 동일한 격리된 인프라(MySQL, Redis) 위에서 동시성 제어 로직을 완벽하게 검증했습니다.
 
 <br>
 
+### **클라우드 솔루션즈 아키텍트 양성과정 (2023.02 ~ 2023.08)**
+> *주관: 한국소프트웨어산업협회 (메가존클라우드 채용 연계)*
+- **Hybrid Multi-Cloud 설계:** 온프레미스와 퍼블릭 클라우드를 연동하는 융복합 아키텍처 구축 실습
+- **IaC & Kubernetes:** Terraform을 활용한 인프라 프로비저닝 및 k8s 클러스터 운영 관리 학습
+
+<br>
+
+### **전자정부 표준프레임워크 기반 풀스택 개발 (2020.07 ~ 2021.03)**
+> *주관: 대덕인재개발원*
+- **Project: 아파트 통합 관리 시스템 (ANY APART)**
+  - **Role:** DA (Data Architect) - Oracle 11g ERD 설계 및 데이터 모델링 주도
+  - **Learning:** 레거시 시스템(eGovFrame) 분석 및 RDB 설계 기초 확립
+
+<br>
+
+---
+
+## 🧪 Personal Projects
+
 ### 🔹 [Private Multi-Account 모니터링 시스템](https://github.com/hkjs96/private-multiaccount-monitoring)
 > **폐쇄망(Private) 및 멀티 계정 환경을 위한 통합 관제 아키텍처 구축**
-
 - **VPC Peering & Grafana Agent**를 활용한 계정 간 메트릭/로그 중앙 집중화 설계
 - 보안 컴플라이언스를 준수하며 다수 계정의 리소스 현황을 단일 대시보드에서 시각화
+
+### 🔹 [SimpleShop – 세션 기반 쇼핑몰 API](https://github.com/hkjs96/simpleshop)
+- Spring Session 기반 로그인 및 AWS S3 이미지 업로드 기능 구현
+- Swagger 문서화 및 Cookie 기반 인증 연동 실습
 
 <br>
 
